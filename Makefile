@@ -53,3 +53,21 @@ pypi_test:
 
 pypi:
 	@twine upload dist/* -u $(PYPI_USERNAME)
+
+
+PROJECT_ID=radiant-mercury-328015
+BUCKET_NAME= wagon-data-750-aires
+REGION=europe-west2
+
+set_project:
+		@gcloud config set project ${PROJECT_ID}
+
+create_bucket:
+		@gsutil mb -l ${REGION} -p ${PROJECT_ID} gs://${BUCKET_NAME}
+
+LOCAL_PATH="/Users/Nuria/code/nairesc/TaxiFareModel/raw_data/train_1k.csv"
+BUCKET_FOLDER=data
+BUCKET_FILE_NAME=$(shell basename ${LOCAL_PATH})
+
+upload_data:
+		@gsutil cp ${LOCAL_PATH} gs://${BUCKET_NAME}/${BUCKET_FOLDER}/${BUCKET_FILE_NAME}
