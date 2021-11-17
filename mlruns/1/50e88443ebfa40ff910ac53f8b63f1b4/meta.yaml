@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/Nuria/code/nairesc/TaxiFareModel/mlruns/1/50e88443ebfa40ff910ac53f8b63f1b4/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: 50e88443ebfa40ff910ac53f8b63f1b4
+run_uuid: 50e88443ebfa40ff910ac53f8b63f1b4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1637079674266
+status: 1
+tags: []
+user_id: unknown
