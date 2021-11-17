@@ -1,3 +1,4 @@
+import joblib
 from mlflow.entities import experiment
 from TaxiFareModel.data import get_data, clean_data
 from TaxiFareModel.utils import compute_rmse
@@ -11,6 +12,7 @@ from sklearn.linear_model import LinearRegression
 import mlflow
 from mlflow.tracking import MlflowClient
 from memoized_property import memoized_property
+from termcolor import colored
 
 MLFLOW_URI = "https://mlflow.lewagon.co/"
 EXPERIMENT_NAME = "[UK] [London] [nairesc] TaxiFareModelv1"
@@ -62,6 +64,12 @@ class Trainer():
             f"experiment URL: https://mlflow.lewagon.co/#/experiments/{experiment_id}"
         )
 
+    def save_model(self):
+        """ Save the trained model into a model.joblib file """
+        joblib.dump(self.pipeline, 'model.joblib')
+        print(colored("model.joblib saved locally", "green"))
+
+
     def evaluate(self, X_test, y_test):
         """evaluates the pipeline on df_test and return the RMSE"""
         y_pred = self.pipeline.predict(X_test)
@@ -108,3 +116,4 @@ if __name__ == "__main__":
     trainer.set_pipeline()
     trainer.run()
     trainer.evaluate(X_test, y_test)
+    trainer.save_model()
